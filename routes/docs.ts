@@ -52,15 +52,12 @@
  *             type: object
  *             required:
  *               - email
- *               - firstName
- *               - lastName
+ *               - name
  *               - password
  *             properties:
  *               email:
  *                 type: string
- *               firstName:
- *                 type: string
- *               lastName:
+ *               name:
  *                 type: string
  *               password:
  *                 type: string
