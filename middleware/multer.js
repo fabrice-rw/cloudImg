@@ -10,7 +10,13 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
-    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+    if (file.mimetype === 'image/jpeg' ||
+        file.mimetype === 'image/png' ||
+        file.mimetype === 'image/gif' ||
+        file.mimetype === 'video/mp4' ||
+        file.mimetype === 'video/mpeg' ||
+        file.mimetype === 'video/quicktime'
+    ) {
         cb(null, true);
     } else {
         cb({ message: 'Unsupported file format' }, false);

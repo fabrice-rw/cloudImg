@@ -77,25 +77,25 @@
 
 /**
  * @swagger
- * /upload-images:
+ * /upload-media:
  *   post:
  *     tags: [Upload/Download]
- *     summary: Upload images
- *     description: Upload multiple images
+ *     summary: Upload media
+ *     description: Upload multiple media
  *     requestBody:
  *       content:
  *         multipart/form-data:
  *           schema:
  *             type: object
  *             properties:
- *               image:
+ *               media:
  *                 type: array
  *                 items:
  *                   type: string
  *                   format: binary
  *     responses:
  *       200:
- *         description: Images uploaded successfully
+ *         description: Media uploaded successfully
  *         content:
  *           application/json:
  *             schema:
@@ -113,7 +113,7 @@
  *                       id:
  *                         type: string
  *       405:
- *         description: Images upload failed
+ *         description: Media upload failed
  *         content:
  *           application/json:
  *             schema:
@@ -128,8 +128,8 @@
  * /download/{id}:
  *   get:
  *     tags: [Upload/Download]
- *     summary: Download image
- *     description: Download image by ID
+ *     summary: Download media
+ *     description: Download media by ID
  *     parameters:
  *       - in: path
  *         name: id
@@ -139,14 +139,14 @@
  *           type: string
  *     responses:
  *       302:
- *         description: Found. Redirect to the image URL.
+ *         description: Found. Redirect to the media URL.
  *         headers:
  *           Location:
- *             description: URL to download the image
+ *             description: URL to download the media
  *             schema:
  *               type: string
  *       404:
- *         description: Image not found.
+ *         description: Media not found.
  */
 
 
@@ -165,11 +165,11 @@
 
 /**
  * @swagger
- * /images:
+ * /media:
  *   get:
  *     tags: [Upload/Download]
- *     summary: Get all images
- *     description: Retrieve all images and their IDs
+ *     summary: Get all media
+ *     description: Retrieve all media and their IDs
  *     responses:
  *       200:
  *         description: Successful operation

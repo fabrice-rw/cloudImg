@@ -1,8 +1,8 @@
 const cloudinary = require('cloudinary');
 
-const dotenv = require ('dotenv')
+const dotenv = require('dotenv');
 
-dotenv.config()
+dotenv.config();
 
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
@@ -15,13 +15,13 @@ exports.uploads = (file, folder) => {
         cloudinary.uploader.upload(file, (result) => {
             resolve({
                 url: result.url,
-                id:result.public_id
-            })
+                id: result.public_id
+            });
         }, {
             resource_type: 'auto',
-            folder:folder
-        })
-    })
+            folder: folder
+        });
+    });
 };
 
 exports.getFile = (fileId) => {
@@ -38,15 +38,15 @@ exports.getFile = (fileId) => {
 };
 
 
-exports.getAllImages = () => {
-    return cloudinary.api.resources({ type: 'upload', max_results: 15 })
+exports.getAllMedia = () => {
+    return cloudinary.api.resources()
         .then(result => {
             if (!result || !result.resources) {
-                throw new Error('Failed to retrieve images');
+                throw new Error('Failed to retrieve media');
             }
             return result.resources;
         })
         .catch(error => {
-            throw error || new Error('Failed to retrieve images');
+            throw error || new Error('Failed to retrieve media');
         });
 };

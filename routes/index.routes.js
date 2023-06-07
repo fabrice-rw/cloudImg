@@ -7,7 +7,7 @@ const router = express.Router();
 const fs = require('fs');
 const authenticate = require('../middleware/authenticate')
 
-router.post('/upload-images', authenticate, multerMiddleware.array('image'), async (req, res) => {
+router.post('/upload-media', authenticate, multerMiddleware.array('image','video'), async (req, res) => {
     const uploader = async (path) => await cloudinary.uploads(path);
 
     if (req.method === 'POST') {
@@ -26,12 +26,12 @@ router.post('/upload-images', authenticate, multerMiddleware.array('image'), asy
         }
 
         res.status(200).json({
-            message: 'Images uploaded successfully',
+            message: 'media uploaded successfully',
             data: urls,
         });
     } else {
         res.status(405).json({
-            error: 'Images upload failed',
+            error: 'media upload failed',
         });
     }
 });
@@ -48,13 +48,13 @@ router.get('/download/:id', authenticate, async (req, res) => {
     }
 });
 
-router.get('/images', async (req, res) => {
+router.get('/media', async (req, res) => {
     try {
-        const result = await cloudinary.getAllImages();
+        const result = await cloudinary.getAllMedia();
         res.status(200).json(result);
     } catch (error) {
         res.status(500).json({
-            error: 'Failed to retrieve images',
+            error: 'Failed to retrieve media',
         });
     }
 });
